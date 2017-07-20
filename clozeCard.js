@@ -1,14 +1,18 @@
 function ClozeCard (text, cloze){
-	this.fullText = text;
-	this.cloze = cloze;
-	this.partial = function(){
-		if(this.fullText.includes(this.cloze)){
-			return this.fullText.replace(this.cloze, "________");
-		} else {
-			var logText = "'" + this.cloze + 
-				"' doesn't appear in '" + this.fullText + "'";
-			return logText;
+	if(this instanceof ClozeCard) {
+		this.fullText = text;
+		this.cloze = cloze;
+		this.partial = function(){
+			if(this.fullText.includes(this.cloze)){
+				return this.fullText.replace(this.cloze, "________");
+			} else {
+				var logText = "'" + this.cloze + 
+					"' doesn't appear in '" + this.fullText + "'";
+				return logText;
+			}
 		}
+	} else {
+		return new ClozeCard(text, cloze);
 	}
 }
 

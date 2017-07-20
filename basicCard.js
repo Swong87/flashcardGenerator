@@ -1,10 +1,14 @@
 function BasicCard(front, back){
-	this.front = front;
-	this.back = back;
+	if(this instanceof BasicCard) {
+		this.front = front;
+		this.back = back;
+	} else {
+		return new BasicCard(front, back);
+	}
 }
 
-// var myCard = new BasicCard("What's my name?", "Stephen");
-// console.log(myCard.front);
-// console.log(myCard.back);
+var myCard = BasicCard("What's my name?", "Stephen");
+console.log(myCard.front);
+console.log(myCard.back);
 
 module.exports = BasicCard;
